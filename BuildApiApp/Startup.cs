@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,10 @@ namespace BuildApiApp
                     Description = "A simple example to Implement Swagger UI",
                 });
             });
-
+            services.AddMvc(option => option.EnableEndpointRouting = true)
+      .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+            // need Microsoft.AspNetCore.Mvc.NewtonsoftJson package
+        .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             services.AddScoped<IGenericRepository<Project>, ProjectRepository>();
             services.AddScoped<IGenericRepository<Employee>, EmployeeRepository>();
         }

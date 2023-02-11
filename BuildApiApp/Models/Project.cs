@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BuildApiApp.Models
 {
@@ -6,6 +7,7 @@ namespace BuildApiApp.Models
     {
         public Guid Id { get; set; }
         public string ProjectName { get; set; }
-        //public List<Employee> Employees { get; set; }
+        public List<Employee> Employees { get; set; }
+
     }
 }
